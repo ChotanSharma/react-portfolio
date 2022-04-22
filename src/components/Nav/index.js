@@ -1,33 +1,23 @@
 import React from 'react';
 
-function Nav() {
-
+function Nav(props) {
+  const tabs = ['Chotan Sharma', 'about', 'portfolio', 'contact'];
   return (
-    <header>
-        <h2>
-    <a href="/">
-      Chotan Sharma
-    </a>
-  </h2>
-  <nav>
-    <ul className="flex-row">
-      <li className="mx-2">
-        <a href="#about">
-          About me
-        </a>
-      </li>
-      <li>
-        <a href="#portfolio">Portfolio</a>
-      </li>
-      <li>
-        <a href="#contact">Contact</a>
-      </li>
-      <li>
-        <a href="#resume">Resume</a>
-      </li>
+    <ul className="nav">
+      {tabs.map(tab => (
+        <li className="nav-item" key={tab}>
+          <a
+            href={'#' + tab.toLowerCase()}
+            onClick={() => props.handlePageChange(tab)}
+            className={
+              props.currentPage === tab ? 'nav-link active' : 'nav-link'
+            }
+          >
+            {tab}
+          </a>
+        </li>
+      ))}
     </ul>
-  </nav>
-</header>
   );
 }
 
