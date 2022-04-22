@@ -1,23 +1,29 @@
+import './Nav.css'
 import React from 'react';
 
 function Nav(props) {
-  const tabs = ['Chotan Sharma', 'about', 'portfolio', 'contact'];
+  const { pages = [], setState, getState } = props;
+
   return (
-    <ul className="nav">
-      {tabs.map(tab => (
-        <li className="nav-item" key={tab}>
-          <a
-            href={'#' + tab.toLowerCase()}
-            onClick={() => props.handlePageChange(tab)}
-            className={
-              props.currentPage === tab ? 'nav-link active' : 'nav-link'
-            }
-          >
-            {tab}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <nav>
+      <h1>Chotan Sharma</h1>
+      <ul>
+        {pages.map(page => (
+          <li className="nav-item" key={page.name}>
+            <a
+              href='#'
+              onClick={() => setState(page)}
+              className={
+                getState.name === page.name ? 'nav-link active' : 'nav-link'
+              }
+            >
+              {page.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
   );
 }
 
